@@ -16,6 +16,9 @@ export class LoultSocketService {
   }
 
   public connect() {
+    // TODO: while websocket is undefined, attempt at reconnecting
+
+    // TODO : add error/disconnect handling (this should reset the websocket field to undefined)
     this.webSocket = webSocket(LOULT_SOCKET_URL);
     this.webSocket.asObservable().subscribe(data => this.onMessage(data));
   }
@@ -37,7 +40,6 @@ export class LoultSocketService {
   }
 
   private sendMessage(msg: BaseMessage) {
-    // TODO: encode to string
     this.webSocket.next(JSON.stringify(msg));
   }
 
