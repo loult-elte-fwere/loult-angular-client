@@ -3,12 +3,12 @@ import {LoultSocketService} from './loult-socket.service';
 import {BehaviorSubject} from 'rxjs';
 
 interface UserData {
-  pokename: string;
   name: string;
-  adj: string;
+  adjective: string;
   color: string;
   img: string;
   is_me: boolean;
+  user_id: string;
 }
 
 @Injectable({
@@ -26,11 +26,20 @@ export class UserlistService {
 
   constructor(loultSocket: LoultSocketService) { }
 
-  public initList(userList: UserData[]) {}
+  public refreshList(userList: UserData[]) {
+    this.userListStore = userList;
+    // TODO: update Suject
+  }
 
   public userConnect(userData: UserData) {}
 
   public userDisconnect(userid: string) {}
 
-  public getCurrentUser(): UserData {}
+  public getCurrentUser(): UserData {
+    return this.userListStore.find(user => user.is_me);
+  }
+
+  public getUser(userid: string) {
+    return this.userListStore.find(user => user.user_id === userid);
+  }
 }

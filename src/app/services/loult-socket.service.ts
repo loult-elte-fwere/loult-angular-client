@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {webSocket, WebSocketSubject} from 'rxjs/webSocket';
 
 // TODO: https://blog.angulartraining.com/how-to-use-websockets-with-rxjs-and-angular-b98e7fd8be82 use this
@@ -11,6 +11,16 @@ const LOULT_SOCKET_URL = 'https://loult.family/socket';
 export class LoultSocketService {
 
   webSocket: WebSocketSubject<string | ArrayBuffer>;
+  // events data types are set to void for now, as a placeholder
+  public userListEvent: EventEmitter<void> = new EventEmitter<void>();
+  public userConnectEvent: EventEmitter<void> = new EventEmitter<void>();
+  public userDisconnectEvent: EventEmitter<void> = new EventEmitter<void>();
+  public messageEvent: EventEmitter<void> = new EventEmitter<void>();
+  public attackLaunchEvent: EventEmitter<void> = new EventEmitter<void>();
+  public attackCombatEvent: EventEmitter<void> = new EventEmitter<void>();
+  public effectEvent: EventEmitter<void> = new EventEmitter<void>();
+  public notificationEvent: EventEmitter<void> = new EventEmitter<void>();
+  public audioEvent: EventEmitter<ArrayBuffer> = new EventEmitter<ArrayBuffer>();
 
   constructor() {
   }
@@ -31,8 +41,37 @@ export class LoultSocketService {
     }
   }
 
-  private handleJSONMessage(msg: string) {
-    // TODO
+  private handleJSONMessage(msg: any) {
+    switch (msg.type) {
+      case 'backlog':
+        // todo
+        break;
+      case 'msg':
+      case 'bot':
+        // TODO
+        break;
+      case 'private_msg':
+        // TODO
+        break;
+      case 'connect':
+        // TODO
+        break;
+      case 'disconnect':
+        // TODO
+        break;
+      case 'userlist':
+        // TODO
+        break;
+      case 'attack':
+        // TODO
+        break;
+      case 'wait':
+        // TODO
+        break;
+      case 'antiflood':
+        // TODO
+        break;
+    }
   }
 
   private handleAudioData(msg: ArrayBuffer) {

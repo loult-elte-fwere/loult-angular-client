@@ -1,4 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import {LoultSocketService} from '../../services/loult-socket.service';
+
+interface BaseMessage {
+  text: string;
+}
+
+interface UserMessage extends BaseMessage {
+  userid: string;
+}
+
+interface Notification extends BaseMessage {
+  category: 'primary' | 'valid' | 'warning';
+}
+
+// TODO : use classes instead of interface
 
 @Component({
   selector: 'app-messages-log',
@@ -7,9 +22,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MessagesLogComponent implements OnInit {
 
-  constructor() { }
+  messageBacklog: BaseMessage[] = [];
+
+  constructor(private loultSocket: LoultSocketService) { }
 
   ngOnInit() {
+    this.loultSocket.messageEvent.subscribe();
+  }
+
+  isUserMsg(msg : BaseMessage){
+    return msg instanceof User
   }
 
 }
