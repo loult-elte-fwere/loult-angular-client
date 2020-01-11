@@ -12,15 +12,15 @@ export class LoultSocketService {
 
   webSocket: WebSocketSubject<string | ArrayBuffer>;
   // events data types are set to void for now, as a placeholder
-  public userListEvent: EventEmitter<void> = new EventEmitter<void>();
-  public userConnectEvent: EventEmitter<void> = new EventEmitter<void>();
-  public userDisconnectEvent: EventEmitter<void> = new EventEmitter<void>();
-  public messageEvent: EventEmitter<void> = new EventEmitter<void>();
-  public attackLaunchEvent: EventEmitter<void> = new EventEmitter<void>();
-  public attackCombatEvent: EventEmitter<void> = new EventEmitter<void>();
-  public effectEvent: EventEmitter<void> = new EventEmitter<void>();
-  public notificationEvent: EventEmitter<void> = new EventEmitter<void>();
-  public audioEvent: EventEmitter<ArrayBuffer> = new EventEmitter<ArrayBuffer>();
+  public userListEvent =  new EventEmitter<void>();
+  public userConnectEvent = new EventEmitter<void>();
+  public userDisconnectEvent = new EventEmitter<void>();
+  public messageEvent = new EventEmitter<void>();
+  public attackLaunchEvent = new EventEmitter<void>();
+  public attackCombatEvent = new EventEmitter<void>();
+  public effectEvent = new EventEmitter<void>();
+  public notificationEvent = new EventEmitter<void>();
+  public audioEvent = new EventEmitter<ArrayBuffer>();
 
   constructor() {
   }

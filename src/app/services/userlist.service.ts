@@ -9,6 +9,7 @@ interface UserData {
   img: string;
   is_me: boolean;
   user_id: string;
+  is_muted: string;
 }
 
 @Injectable({
